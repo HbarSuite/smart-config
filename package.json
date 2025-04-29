@@ -1,6 +1,6 @@
 {
     "name": "@hsuite/smart-config",
-    "version": "2.0.0",
+    "version": "2.1.0",
     "main": "index.js",
     "types": "index.d.ts",
     "isPublic": true,
@@ -15,9 +15,14 @@
     "dependencies": {
         "@hsuite/hashgraph-types": "^2.0.0",
         "@hsuite/smart-network-types": "^2.0.0",
-        "@hashgraph/sdk": "^2.51.0"
+        "@hashgraph/sdk": "^2.62.0"
     },
     "devDependencies": {
         "@compodoc/compodoc": "^1.1.23"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/HbarSuite/smart-config.git",
+        "directory": "libs/smart-config"
     }
 }

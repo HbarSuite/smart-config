@@ -55,7 +55,7 @@ npm install @hsuite/smart-config
 {
   "@hsuite/hashgraph-types": "^2.0.0",
   "@hsuite/smart-network-types": "^2.0.0",
-  "@hashgraph/sdk": "^2.51.0"
+  "@hashgraph/sdk": "^2.62.0",
 }
 ```
 

@@ -194,8 +194,16 @@ export class SmartConfigService {
    * @throws {Error} If mirror node configuration is missing
    */
   getMirrorNode(): IHashgraph.IMirrorNode {
-    let mirrorNode = this.configService.getOrThrow<IHashgraph.IMirrorNode>('mirrorNode');
-    return mirrorNode;
+    try {
+      let mirrorNode = this.configService.getOrThrow<IHashgraph.IMirrorNode>('mirrorNode');
+      return mirrorNode;      
+    } catch(error) {
+      return {
+        url: null,
+        apiKey: null,
+        grpc: null
+      };
+    }
   }
 
   /**
@@ -244,8 +252,8 @@ export class SmartConfigService {
         if(networkConfig) {
           resolve(networkConfig.nodes);
         } else {
-          if(!lodash.isUndefined(this.smartConfigOptions.baseUrl) && this.smartConfigOptions.baseUrl !== 'local') {
-            const response = await this.httpService.get(`${this.smartConfigOptions.baseUrl}/network/nodes`).toPromise();
+          if(!lodash.isUndefined(this.smartConfigOptions.smartRegistryUrl) && this.smartConfigOptions.smartRegistryUrl !== 'local') {
+            const response = await this.httpService.get(`${this.smartConfigOptions.smartRegistryUrl}/network/nodes`).toPromise();
             resolve(response.data);
           } else {
             reject(new Error('Base URL not set'));
@@ -281,8 +289,8 @@ export class SmartConfigService {
         if(networkConfig) {
           resolve(networkConfig.utilities);
         } else {
-          if(!lodash.isUndefined(this.smartConfigOptions.baseUrl) && this.smartConfigOptions.baseUrl !== 'local') {
-            const response = await this.httpService.get(`${this.smartConfigOptions.baseUrl}/network/utilities`).toPromise();
+          if(!lodash.isUndefined(this.smartConfigOptions.smartRegistryUrl) && this.smartConfigOptions.smartRegistryUrl !== 'local') {
+            const response = await this.httpService.get(`${this.smartConfigOptions.smartRegistryUrl}/network/utilities`).toPromise();
             resolve(response.data);
           } else {
             reject(new Error('Base URL not set'));
@@ -323,8 +331,8 @@ export class SmartConfigService {
         if(networkConfig) {
           resolve(networkConfig.fees);
         } else {
-          if(!lodash.isUndefined(this.smartConfigOptions.baseUrl) && this.smartConfigOptions.baseUrl !== 'local') {
-            const response = await this.httpService.get(`${this.smartConfigOptions.baseUrl}/network/fees`).toPromise();
+          if(!lodash.isUndefined(this.smartConfigOptions.smartRegistryUrl) && this.smartConfigOptions.smartRegistryUrl !== 'local') {
+            const response = await this.httpService.get(`${this.smartConfigOptions.smartRegistryUrl}/network/fees`).toPromise();
             resolve(response.data);
           } else {
             reject(new Error('Base URL not set'));
